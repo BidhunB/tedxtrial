@@ -7,6 +7,7 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
+import Image from "next/image";
 
 export const HeroParallax = ({
   products,
@@ -85,6 +86,7 @@ export const HeroParallax = ({
               product={product}
               translate={translateX}
               key={product.title + idx}
+              priority={true}
             />
           ))}
         </motion.div>
@@ -120,6 +122,7 @@ export const Header = () => {
 export const ProductCard = ({
   product,
   translate,
+  priority,
 }: {
   product: {
     title: string;
@@ -127,6 +130,7 @@ export const ProductCard = ({
     thumbnail: string;
   };
   translate: MotionValue<number>;
+  priority?: boolean;
 }) => {
   return (
     <motion.div
@@ -140,12 +144,13 @@ export const ProductCard = ({
       className="group/product h-64 w-[20rem] md:h-96 md:w-[50rem] relative shrink-0"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl ">
-        <img
+        <Image
           src={product.thumbnail}
-          height="600"
-          width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
+          fill
+          priority={priority}
+          className="object-cover object-left-top absolute h-full w-full inset-0"
+          sizes="(max-width: 768px) 100vw, 50rem"
         />
       </a>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
