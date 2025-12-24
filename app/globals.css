@@ -161,3 +161,21 @@
     animation: holographic-shimmer 3s ease-in-out infinite;
   }
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #eb0028; 
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b3001e; 
+}

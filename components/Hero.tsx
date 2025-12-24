@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Holographic3DText } from "@/components/ui/holographic-3d-text";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import { ThemeManifesto } from "@/components/ThemeManifesto";
 import Image from "next/image";
+import { CountdownTimer } from "@/components/CountdownTimer";
 
 export const products = [
   {
@@ -47,10 +47,7 @@ export const products = [
 const Hero = () => {
   // 1. The Parallax Header: This WILL participate in the 3D scroll effect
   const ParallaxHeader = (
-    <div
-      key="parallax-header"
-      className="max-w-7xl relative mx-auto px-4 w-full  left-0 top-0 flex justify-center mb-20 pointer-events-none"
-    >
+    <div className="max-w-7xl relative mx-auto px-4 w-full  left-0 top-0 flex items-center justify-center pointer-events-none">
       {/* Margins/Padding to align with the parallax flow */}
       <div className="mt-40 pointer-events-auto">
         <ThemeManifesto />
@@ -81,15 +78,9 @@ const Hero = () => {
           </h1>
         </div>
 
-        {/* HOLOGRAPHIC X (Right Side - Giant) */}
-        <div className="hidden md:flex absolute right-[-5vh] top-1/2 -translate-y-1/2 z-20 pointer-events-none opacity-50">
-          <Holographic3DText
-            className="text-[120vh] leading-none opacity-90"
-            depth={2.0}
-            variant="hole"
-          >
-            X
-          </Holographic3DText>
+        {/* COUNTDOWN TIMER & LOCATION (Right Side) */}
+        <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none">
+          <CountdownTimer />
         </div>
 
         {/* Decorative Elements */}
