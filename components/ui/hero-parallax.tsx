@@ -19,9 +19,19 @@ export const HeroParallax = ({
   }[];
   headerContent?: React.ReactNode;
 }) => {
-  const firstRow = products.slice(0, 5);
-  const secondRow = products.slice(5, 10);
-  const thirdRow = products.slice(10, 15);
+  // Ensure we have enough products for the parallax effect (need ~15)
+  // If provided products are fewer, we repeat them.
+  const _products = React.useMemo(() => {
+    let combined = [...products];
+    while (combined.length < 15) {
+      combined = [...combined, ...products];
+    }
+    return combined;
+  }, [products]);
+
+  const firstRow = _products.slice(0, 5);
+  const secondRow = _products.slice(5, 10);
+  const thirdRow = _products.slice(10, 15);
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -70,29 +80,29 @@ export const HeroParallax = ({
       >
         {headerContent || <Header />}
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
-          {firstRow.map((product) => (
+          {firstRow.map((product, idx) => (
             <ProductCard
               product={product}
               translate={translateX}
-              key={product.title}
+              key={product.title + idx}
             />
           ))}
         </motion.div>
         <motion.div className="flex flex-row  mb-20 space-x-20 ">
-          {secondRow.map((product) => (
+          {secondRow.map((product, idx) => (
             <ProductCard
               product={product}
               translate={translateXReverse}
-              key={product.title}
+              key={product.title + idx}
             />
           ))}
         </motion.div>
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map((product) => (
+          {thirdRow.map((product, idx) => (
             <ProductCard
               product={product}
               translate={translateX}
-              key={product.title}
+              key={product.title + idx}
             />
           ))}
         </motion.div>
@@ -127,7 +137,7 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative shrink-0"
+      className="group/product h-96 w-[50rem] relative shrink-0"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl ">
         <img

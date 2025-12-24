@@ -8,7 +8,7 @@ export const ThemeManifesto = () => {
   return (
     <div className="relative z-30 flex flex-col items-start justify-center text-left mx-auto px-4 left-4 pointer-events-auto">
       {/* Top Marquee Banner */}
-      <div className="w-screen relative left-[50%] -translate-x-[50%] overflow-hidden bg-zinc-900/80 backdrop-blur-sm py-2 mb-8 border-y border-white/10">
+      <div className="w-screen relative left-[50%] -translate-x-[50%] overflow-hidden bg-zinc-900/80 backdrop-blur-sm lg:mt-12  py-2 mb-8 border-y border-white/10">
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: "-50%" }}
