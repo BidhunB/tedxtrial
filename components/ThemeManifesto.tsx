@@ -38,7 +38,7 @@ export const ThemeManifesto = () => {
       </div>
 
       {/* Title */}
-      <h2 className="text-8xl md:text-9xl font-black text-white tracking-tighter mb-8 uppercase">
+      <h2 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-tighter mb-8 uppercase">
         Dauntless
       </h2>
 

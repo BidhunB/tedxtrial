@@ -33,25 +33,29 @@ export const CountdownTimer = () => {
       : { days: 0, hours: 0, minutes: 0, seconds: 0 };
   };
 
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+  /*
+   * Fix for Hydration Error:
+   * Initialize with zeros so server and client match initially.
+   * The actual time is calculated only after mount (client-side).
+   */
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
-    const timer = setInterval(
-      () => setTimeLeft(calculateTimeLeft()),
-      1000
-    );
+    // Calculate immediately on mount
+    setTimeLeft(calculateTimeLeft());
+
+    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const TimeUnit = ({
-    value,
-    label,
-  }: {
-    value: number;
-    label: string;
-  }) => (
+  const TimeUnit = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
-      <span className="font-space font-bold text-[clamp(3.5rem,6vw,5.5rem)] text-white leading-none tracking-[-0.02em] tabular-nums">
+      <span className="font-space font-bold text-3xl sm:text-5xl md:text-[clamp(3.5rem,6vw,5.5rem)] text-white leading-none tracking-[-0.02em] tabular-nums">
         {value.toString().padStart(2, "0")}
       </span>
       <span className="font-inter text-xs tracking-[0.2em] uppercase text-[#eb0028] mt-2">
@@ -61,20 +65,26 @@ export const CountdownTimer = () => {
   );
 
   return (
-    <section className="flex flex-col items-end text-right mr-8 md:mr-16 z-30">
+    <section className="flex flex-col items-center text-center md:items-end md:text-right md:mr-16 z-30">
       {/* Label */}
-      <p className="font-inter text-xs tracking-[0.25em] uppercase text-white/70 mb-4">
+      <p className="font-inter text-[10px] md:text-xs tracking-[0.25em] uppercase text-white/70 mb-4">
         Event Begins In
       </p>
 
       {/* Countdown */}
-      <div className="flex items-start gap-6 mb-6">
+      <div className="flex items-start gap-3 md:gap-6 mb-6">
         <TimeUnit value={timeLeft.days} label="Days" />
-        <span className="font-space text-5xl text-white/50 mt-4">:</span>
+        <span className="font-space text-3xl md:text-5xl text-white/50 mt-2 md:mt-4">
+          :
+        </span>
         <TimeUnit value={timeLeft.hours} label="Hours" />
-        <span className="font-space text-5xl text-white/50 mt-4">:</span>
+        <span className="font-space text-3xl md:text-5xl text-white/50 mt-2 md:mt-4">
+          :
+        </span>
         <TimeUnit value={timeLeft.minutes} label="Mins" />
-        <span className="font-space text-5xl text-white/50 mt-4">:</span>
+        <span className="font-space text-3xl md:text-5xl text-white/50 mt-2 md:mt-4">
+          :
+        </span>
         <TimeUnit value={timeLeft.seconds} label="Secs" />
       </div>
 

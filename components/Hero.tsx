@@ -62,15 +62,15 @@ const Hero = () => {
             */}
       <div className="absolute top-0 left-0 w-full h-[100vh] z-30 pointer-events-none overflow-hidden">
         {/* BIG TYPOGRAPHY (Left) */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-30 pointer-events-auto">
+        <div className="absolute left-4 top-[30%] sm:top-[45%] md:top-1/2 -translate-y-1/2 z-30 pointer-events-auto">
           <h1
             className="
                             font-black uppercase tracking-tight leading-none
-                            flex flex-col md:flex-row
-                            justify-center items-center md:items-start
-                            text-center md:text-left
-                            text-[clamp(3rem,12vh,18vh)]
-                            md:[writing-mode:vertical-lr]
+                            flex flex-row
+                            justify-center items-start
+                            text-left
+                            text-6xl sm:text-7xl md:text-[clamp(3rem,12vh,18vh)]
+                            [writing-mode:vertical-lr]
                         "
           >
             <span className="text-zinc-500">DAUNT</span>
@@ -79,7 +79,7 @@ const Hero = () => {
         </div>
 
         {/* COUNTDOWN TIMER & LOCATION (Right Side) */}
-        <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none">
+        <div className="absolute w-full md:w-auto bottom-32 md:bottom-auto md:right-0 md:top-1/2 md:-translate-y-1/2 z-30 pointer-events-none flex justify-center md:block">
           <CountdownTimer />
         </div>
 
