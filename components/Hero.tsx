@@ -49,7 +49,7 @@ const Hero = () => {
   const ParallaxHeader = (
     <div className="max-w-7xl relative mx-auto px-4 w-full  left-0 top-0 flex items-center justify-center pointer-events-none">
       {/* Margins/Padding to align with the parallax flow */}
-      <div className="mt-40 pointer-events-auto">
+      <div className="mt-40 md:mt-60 pointer-events-auto">
         <ThemeManifesto />
       </div>
     </div>
@@ -62,7 +62,7 @@ const Hero = () => {
             */}
       <div className="absolute top-0 left-0 w-full h-[100vh] z-30 pointer-events-none overflow-hidden">
         {/* BIG TYPOGRAPHY (Left) */}
-        <div className="absolute left-4 top-[30%] sm:top-[45%] md:top-1/2 -translate-y-1/2 z-30 pointer-events-auto">
+        <div className="absolute left-4 top-[30%] sm:top-[45%] md:top-[55%] -translate-y-1/2 z-30 pointer-events-auto">
           <h1
             className="
                             font-black uppercase tracking-tight leading-none
